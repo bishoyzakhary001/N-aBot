@@ -1,6 +1,4 @@
-# Evita Whisper originale che richiede Rust
-git+https://github.com/openai/whisper.git#egg=whisper-no-rust
-
+faster-whisper==0.10.0
 transformers==4.40.0
 torch==2.5.1
 gTTS==2.5.1
