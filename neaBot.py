@@ -14,7 +14,8 @@ from transformers import pipeline
 from gtts import gTTS
 import random
 import nest_asyncio
-
+from faster_whisper import WhisperModel
+whisper_model = WhisperModel("base", compute_type="int8")
 TOKEN = '7938652871:AAHqUgFL6FSHSCEmhq9TU69HYerXII2vm2o'
 
 user_last_choice = {}
@@ -372,8 +373,8 @@ async def handle_voice(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await file.download_to_drive(ogg_path)
     subprocess.run(["ffmpeg", "-i", ogg_path, wav_path], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    result = whisper_model.transcribe(wav_path, language="it")
-    testo = result.get("text", "").strip()
+    segments, info = whisper_model.transcribe(wav_path, language="it")
+    testo = " ".join([seg.text for seg in segments])
 
     if not testo:
         await update.message.reply_text("⚠️ Nessun contenuto rilevato.")
