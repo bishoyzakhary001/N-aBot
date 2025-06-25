@@ -1,0 +1,17 @@
+# NLP e Trascrizione
+transformers==4.40.0
+torch>=1.10
+whisper
+
+# Text-to-speech
+gTTS==2.5.1
+
+# Telegram Bot
+python-telegram-bot==20.3
+
+# Utilità
+nest_asyncio==1.6.0
+ffmpeg-python==0.2.0
+
+# Per sicurezza (se usi pandas o CSV avanzati)
+pandas>=1.5
